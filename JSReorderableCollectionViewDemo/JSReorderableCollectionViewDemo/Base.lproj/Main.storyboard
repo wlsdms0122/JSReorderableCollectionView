@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rHk-Y5-7vv">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="ggr-lB-343">
+            <objects>
+                <navigationController id="rHk-Y5-7vv" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SQm-QJ-tHX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="xMr-Ch-7lG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7li-AS-Hqa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-941" y="121"/>
+        </scene>
+        <!--JSReorderableCollectionView-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JSReorderableCollectionViewDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="fGE-6Z-2Ub">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fGE-6Z-2Ub" secondAttribute="trailing" id="exU-LW-od8"/>
+                            <constraint firstItem="fGE-6Z-2Ub" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="klP-IH-wkm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fGE-6Z-2Ub" secondAttribute="bottom" id="qbF-Op-vhH"/>
+                            <constraint firstItem="fGE-6Z-2Ub" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xAq-Jt-buB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="JSReorderableCollectionView" id="vTr-58-VJ3"/>
+                    <connections>
+                        <outlet property="tableView" destination="fGE-6Z-2Ub" id="dOE-rV-Xiq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-51" y="121"/>
+        </scene>
+        <!--Horizontal View Controller-->
+        <scene sceneID="FCx-rO-46Z">
+            <objects>
+                <viewController storyboardIdentifier="HorizontalViewController" id="l8P-om-rzT" customClass="HorizontalViewController" customModule="JSReorderableCollectionViewDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DHA-PO-ese">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Wr-6o-Z2T" customClass="JSReorderableCollectionView" customModule="JSReorderableCollectionView">
+                                <rect key="frame" x="10" y="54" width="394" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="8Mj-If-0DU"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xEE-li-mHH">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dvP-tf-uDK" customClass="JSReorderableCollectionView" customModule="JSReorderableCollectionView">
+                                <rect key="frame" x="10" y="174" width="394" height="210"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="210" id="4Vy-Tr-yM2"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Yy5-Qp-Hp0">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ilg-Aj-Yma" customClass="JSReorderableCollectionView" customModule="JSReorderableCollectionView">
+                                <rect key="frame" x="102" y="404" width="210" height="448"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="210" id="iGk-cz-VLP"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Z4R-oY-adI">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dvP-tf-uDK" firstAttribute="leading" secondItem="2Dt-R5-mOh" secondAttribute="leading" constant="10" id="1gj-ts-FLZ"/>
+                            <constraint firstItem="ilg-Aj-Yma" firstAttribute="centerX" secondItem="2Dt-R5-mOh" secondAttribute="centerX" id="8E3-00-fzb"/>
+                            <constraint firstItem="4Wr-6o-Z2T" firstAttribute="top" secondItem="2Dt-R5-mOh" secondAttribute="top" constant="10" id="900-Ma-s9m"/>
+                            <constraint firstItem="4Wr-6o-Z2T" firstAttribute="leading" secondItem="2Dt-R5-mOh" secondAttribute="leading" constant="10" id="CPc-Po-kPc"/>
+                            <constraint firstItem="2Dt-R5-mOh" firstAttribute="trailing" secondItem="dvP-tf-uDK" secondAttribute="trailing" constant="10" id="FpZ-WR-CGz"/>
+                            <constraint firstItem="ilg-Aj-Yma" firstAttribute="top" secondItem="dvP-tf-uDK" secondAttribute="bottom" constant="20" id="OAa-PN-cFe"/>
+                            <constraint firstItem="2Dt-R5-mOh" firstAttribute="trailing" secondItem="4Wr-6o-Z2T" secondAttribute="trailing" constant="10" id="joZ-DU-3Vi"/>
+                            <constraint firstItem="2Dt-R5-mOh" firstAttribute="bottom" secondItem="ilg-Aj-Yma" secondAttribute="bottom" constant="10" id="mpW-ir-9WT"/>
+                            <constraint firstItem="dvP-tf-uDK" firstAttribute="top" secondItem="4Wr-6o-Z2T" secondAttribute="bottom" constant="20" id="qIQ-U4-kbt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2Dt-R5-mOh"/>
+                    </view>
+                    <connections>
+                        <outletCollection property="collectionViews" destination="4Wr-6o-Z2T" collectionClass="NSMutableArray" id="QTO-Cq-dBi"/>
+                        <outletCollection property="collectionViews" destination="dvP-tf-uDK" collectionClass="NSMutableArray" id="kj3-dM-S0b"/>
+                        <outletCollection property="collectionViews" destination="ilg-Aj-Yma" collectionClass="NSMutableArray" id="y2S-Tm-dnT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Y5-bY-KAQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="857" y="121"/>
+        </scene>
+        <!--Vertical View Controller-->
+        <scene sceneID="qEf-bn-ASh">
+            <objects>
+                <viewController storyboardIdentifier="VerticalViewController" id="i5u-kn-HZt" customClass="VerticalViewController" customModule="JSReorderableCollectionViewDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q0A-Vw-LG8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kW6-v4-bgH" customClass="JSReorderableCollectionView" customModule="JSReorderableCollectionView">
+                                <rect key="frame" x="10" y="54" width="394" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="jDO-hd-9R1"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oGO-mF-uwV">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u1P-Xr-l2s" customClass="JSReorderableCollectionView" customModule="JSReorderableCollectionView">
+                                <rect key="frame" x="10" y="274" width="394" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Khy-HF-h8X"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="x9U-Kw-5Ee">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1Mx-a3-PUB" customClass="JSReorderableCollectionView" customModule="JSReorderableCollectionView">
+                                <rect key="frame" x="102" y="494" width="210" height="358"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="210" id="Bdl-MS-caD"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DH1-oT-GTw">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kW6-v4-bgH" firstAttribute="top" secondItem="uSY-9K-JBs" secondAttribute="top" constant="10" id="IZ8-Fv-9OW"/>
+                            <constraint firstItem="uSY-9K-JBs" firstAttribute="bottom" secondItem="1Mx-a3-PUB" secondAttribute="bottom" constant="10" id="Kea-ll-TPg"/>
+                            <constraint firstItem="uSY-9K-JBs" firstAttribute="trailing" secondItem="kW6-v4-bgH" secondAttribute="trailing" constant="10" id="Vco-ej-2fX"/>
+                            <constraint firstItem="1Mx-a3-PUB" firstAttribute="centerX" secondItem="uSY-9K-JBs" secondAttribute="centerX" id="ga1-ja-fHI"/>
+                            <constraint firstItem="uSY-9K-JBs" firstAttribute="trailing" secondItem="u1P-Xr-l2s" secondAttribute="trailing" constant="10" id="lTy-6b-NJ5"/>
+                            <constraint firstItem="1Mx-a3-PUB" firstAttribute="top" secondItem="u1P-Xr-l2s" secondAttribute="bottom" constant="20" id="tAe-BT-pYP"/>
+                            <constraint firstItem="kW6-v4-bgH" firstAttribute="leading" secondItem="uSY-9K-JBs" secondAttribute="leading" constant="10" id="xbg-Km-uG2"/>
+                            <constraint firstItem="u1P-Xr-l2s" firstAttribute="leading" secondItem="uSY-9K-JBs" secondAttribute="leading" constant="10" id="yTU-Zz-lql"/>
+                            <constraint firstItem="u1P-Xr-l2s" firstAttribute="top" secondItem="kW6-v4-bgH" secondAttribute="bottom" constant="20" id="zRr-W4-aCY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uSY-9K-JBs"/>
+                    </view>
+                    <connections>
+                        <outletCollection property="collectionViews" destination="kW6-v4-bgH" collectionClass="NSMutableArray" id="Hsl-0D-2xY"/>
+                        <outletCollection property="collectionViews" destination="u1P-Xr-l2s" collectionClass="NSMutableArray" id="fYg-5R-yZQ"/>
+                        <outletCollection property="collectionViews" destination="1Mx-a3-PUB" collectionClass="NSMutableArray" id="Oc3-9Y-UqS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dfg-e3-ZXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="857" y="818"/>
+        </scene>
+    </scenes>
+</document>
