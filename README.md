@@ -74,12 +74,12 @@ public protocol JSReorderableCollectionViewDelegate: class {
 ### How to know cell moved
 You can use `func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)` of `UICollectionViewDataSource`.
 
-Send event when `func updateInteractiveWithLocation(_ location: CGPoint)` called.
+Send event when `moveItem` called in `func updateInteractiveWithLocation(_ location: CGPoint)`.
 
 # Known Issue
 - [ ] When the selectd cell is disappeared by auto scroll, it makes cell order look strange. but data set is fine.
 
-  It is only occur that moving between cell spaces in the collection view consist of more than one cell.
+  It is only occur that moving between cell spaces in the collection view consist of more than one line (column or row).
   
 # Contribution
 Any idea, resolve known issue (plz resolve it T.T), new issue, PR are welcome.
