@@ -45,7 +45,7 @@ open class JSReorderableCollectionView: UICollectionView {
     // Snapshot
     private var snapshot: UIView?
     private var currentPoint: CGPoint?
-    var isAxisFixedPoint: Bool = false // Fix point depended on scroll direction
+    public var isAxisFixedPoint: Bool = false // Fix point depended on scroll direction
     
     // Index path
     private var sourceIndexPath: IndexPath?
@@ -54,8 +54,8 @@ open class JSReorderableCollectionView: UICollectionView {
     // Scroll
     private var displayLink: CADisplayLink?
     private var scrollWeight: CGFloat = 0
-    var scrollThreshold: CGFloat = 40 // Threshold of auto scrolling (>0, pt)
-    var scrollInset: UIEdgeInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1) // Point boundary inset
+    public var scrollThreshold: CGFloat = 40 // Threshold of auto scrolling (>0, pt)
+    public var scrollInset: UIEdgeInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1) // Point boundary inset
     
     private var scrollDirection: ScrollDirection {
         return (collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection ?? .vertical
