@@ -10,12 +10,17 @@ import Foundation
 
 public protocol JSReorderableCollectionViewDelegate: class {
     func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, canMoveItemAt indexPath: IndexPath) -> Bool
+    func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willSnapshot cell: UICollectionViewCell, at point: CGPoint) -> UIView
     func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willDisplay snapshot: UIView, source cell: UICollectionViewCell, at point: CGPoint)
 }
 
 public extension JSReorderableCollectionViewDelegate {
     func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willSnapshot cell: UICollectionViewCell, at point: CGPoint) -> UIView {
+        return cell.snapshotView(afterScreenUpdates: true)!
     }
     
     func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willDisplay snapshot: UIView, source cell: UICollectionViewCell, at point: CGPoint) {
@@ -237,7 +242,7 @@ open class JSReorderableCollectionView: UICollectionView {
         destinationIndexPath = indexPath
         
         // Snapshot cell & add into superview's subview
-        snapshot = cell.snapshotView(afterScreenUpdates: true)
+        snapshot = reorderableDelegate?.reorderableCollectionView(self, willSnapshot: cell, at: point)
         superview.addSubview(snapshot!)
         
         // Display snapshot
