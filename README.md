@@ -35,6 +35,7 @@ open class JSReorderableCollectionView: UICollectionView {
 // JSReorderableCollectionViewDelegate
 public protocol JSReorderableCollectionViewDelegate: class {
     func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, canMoveItemAt indexPath: IndexPath) -> Bool
+    func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willSnapshot cell: UICollectionViewCell, at point: CGPoint) -> UIView
     func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willDisplay snapshot: UIView, source cell: UICollectionViewCell, at point: CGPoint)
 }
 
@@ -67,9 +68,12 @@ public protocol JSReorderableCollectionViewDelegate: class {
   - `func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, canMoveItemAt indexPath: IndexPath) -> Bool`
   
     If your collection view have over two kind of cell type and you won't to move specific cell type, override this method.
+  - `func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willSnapshot cell: UICollectionViewCell, at point: CGPoint) -> UIView`
+  
+    If you want to customize cell snapshot view, override this method. (default is origin snapshot of the cell)
   - `func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willDisplay snapshot: UIView, source cell: UICollectionViewCell, at point: CGPoint)`
   
-    If you want to customize cell snapshot's property(frame, size...), override this method.
+    If you want to customize cell snapshot display effect or animation, override this method. (default is 1.1x size & 90% alpha)
 
 ### How to know cell moved
 You can use `func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)` of `UICollectionViewDataSource`.
