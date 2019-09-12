@@ -23,17 +23,38 @@
 /* Begin PBXBuildFile section */
 		F30349C822E201D90053FF31 /* JSReorderableCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = F30349C622E201D90053FF31 /* JSReorderableCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F30349CF22E2024F0053FF31 /* JSReorderableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30349CE22E2024F0053FF31 /* JSReorderableCollectionView.swift */; };
+		F3936A9F232A164B00CB125F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3936A9E232A164B00CB125F /* AppDelegate.swift */; };
+		F3936AA1232A164B00CB125F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3936AA0232A164B00CB125F /* SceneDelegate.swift */; };
+		F3936AA3232A164B00CB125F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3936AA2232A164B00CB125F /* ViewController.swift */; };
+		F3936AA6232A164B00CB125F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3936AA4232A164B00CB125F /* Main.storyboard */; };
+		F3936AA8232A164D00CB125F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3936AA7232A164D00CB125F /* Assets.xcassets */; };
+		F3936AAB232A164D00CB125F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3936AA9232A164D00CB125F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F30349C322E201D90053FF31 /* JSReorderableCollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JSReorderableCollectionView.framework; path = "../Debug-universal/JSReorderableCollectionView.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F30349C322E201D90053FF31 /* JSReorderableCollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSReorderableCollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30349C622E201D90053FF31 /* JSReorderableCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSReorderableCollectionView.h; sourceTree = "<group>"; };
 		F30349C722E201D90053FF31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F30349CE22E2024F0053FF31 /* JSReorderableCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSReorderableCollectionView.swift; sourceTree = "<group>"; };
+		F3936A9C232A164B00CB125F /* JSReorderableCollectionViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSReorderableCollectionViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3936A9E232A164B00CB125F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F3936AA0232A164B00CB125F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F3936AA2232A164B00CB125F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F3936AA5232A164B00CB125F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F3936AA7232A164D00CB125F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F3936AAA232A164D00CB125F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F3936AAC232A164D00CB125F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F30349C022E201D90053FF31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3936A99232A164B00CB125F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,6 +67,7 @@
 		F30349B922E201D90053FF31 = {
 			isa = PBXGroup;
 			children = (
+				F3936A9D232A164B00CB125F /* JSReorderableCollectionViewDemo */,
 				F30349C522E201D90053FF31 /* JSReorderableCollectionView */,
 				F30349C422E201D90053FF31 /* Products */,
 			);
@@ -55,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				F30349C322E201D90053FF31 /* JSReorderableCollectionView.framework */,
+				F3936A9C232A164B00CB125F /* JSReorderableCollectionViewDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,6 +90,20 @@
 				F30349C722E201D90053FF31 /* Info.plist */,
 			);
 			path = JSReorderableCollectionView;
+			sourceTree = "<group>";
+		};
+		F3936A9D232A164B00CB125F /* JSReorderableCollectionViewDemo */ = {
+			isa = PBXGroup;
+			children = (
+				F3936A9E232A164B00CB125F /* AppDelegate.swift */,
+				F3936AA0232A164B00CB125F /* SceneDelegate.swift */,
+				F3936AA2232A164B00CB125F /* ViewController.swift */,
+				F3936AA4232A164B00CB125F /* Main.storyboard */,
+				F3936AA7232A164D00CB125F /* Assets.xcassets */,
+				F3936AA9232A164D00CB125F /* LaunchScreen.storyboard */,
+				F3936AAC232A164D00CB125F /* Info.plist */,
+			);
+			path = JSReorderableCollectionViewDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -101,12 +138,30 @@
 			productReference = F30349C322E201D90053FF31 /* JSReorderableCollectionView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F3936A9B232A164B00CB125F /* JSReorderableCollectionViewDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3936AAF232A164D00CB125F /* Build configuration list for PBXNativeTarget "JSReorderableCollectionViewDemo" */;
+			buildPhases = (
+				F3936A98232A164B00CB125F /* Sources */,
+				F3936A99232A164B00CB125F /* Frameworks */,
+				F3936A9A232A164B00CB125F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JSReorderableCollectionViewDemo;
+			productName = JSReorderableCollectionViewDemo;
+			productReference = F3936A9C232A164B00CB125F /* JSReorderableCollectionViewDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		F30349BA22E201D90053FF31 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = JSilver;
 				TargetAttributes = {
@@ -117,6 +172,9 @@
 					F30349D522E2131D0053FF31 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
+					F3936A9B232A164B00CB125F = {
+						CreatedOnToolsVersion = 11.0;
+					};
 				};
 			};
 			buildConfigurationList = F30349BD22E201D90053FF31 /* Build configuration list for PBXProject "JSReorderableCollectionView" */;
@@ -125,12 +183,14 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = F30349B922E201D90053FF31;
 			productRefGroup = F30349C422E201D90053FF31 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				F3936A9B232A164B00CB125F /* JSReorderableCollectionViewDemo */,
 				F30349C222E201D90053FF31 /* JSReorderableCollectionView */,
 				F30349D522E2131D0053FF31 /* UnivarsalJSReorderableCollectionView */,
 			);
@@ -142,6 +202,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3936A9A232A164B00CB125F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3936AAB232A164D00CB125F /* LaunchScreen.storyboard in Resources */,
+				F3936AA8232A164D00CB125F /* Assets.xcassets in Resources */,
+				F3936AA6232A164B00CB125F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +246,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F3936A98232A164B00CB125F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3936AA3232A164B00CB125F /* ViewController.swift in Sources */,
+				F3936A9F232A164B00CB125F /* AppDelegate.swift in Sources */,
+				F3936AA1232A164B00CB125F /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F3936AA4232A164B00CB125F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3936AA5232A164B00CB125F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F3936AA9232A164D00CB125F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3936AAA232A164D00CB125F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F30349C922E201D90053FF31 /* Debug */ = {
@@ -376,6 +475,44 @@
 			};
 			name = Release;
 		};
+		F3936AAD232A164D00CB125F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6VSLC69397;
+				INFOPLIST_FILE = JSReorderableCollectionViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jsilver.framework.JSReorderableCollectionViewDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F3936AAE232A164D00CB125F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6VSLC69397;
+				INFOPLIST_FILE = JSReorderableCollectionViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jsilver.framework.JSReorderableCollectionViewDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -402,6 +539,15 @@
 			buildConfigurations = (
 				F30349D722E2131D0053FF31 /* Debug */,
 				F30349D822E2131D0053FF31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3936AAF232A164D00CB125F /* Build configuration list for PBXNativeTarget "JSReorderableCollectionViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3936AAD232A164D00CB125F /* Debug */,
+				F3936AAE232A164D00CB125F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
