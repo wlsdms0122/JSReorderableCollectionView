@@ -135,9 +135,11 @@ open class JSReorderableCollectionView: UICollectionView {
         guard sourceIndexPath != destinationIndexPath,
             reorderableDelegate?.reorderableCollectionView(self, canMoveItemAt: destinationIndexPath) ?? false else { return sourceIndexPath }
         
+        // Datasource have to update before item changed of collection view
+        dataSource?.collectionView?(self, moveItemAt: sourceIndexPath, to: destinationIndexPath)
         // Move cell & send message to collectionview delegate
         moveItem(at: sourceIndexPath, to: destinationIndexPath)
-        dataSource?.collectionView?(self, moveItemAt: sourceIndexPath, to: destinationIndexPath)
+        
         return destinationIndexPath
     }
     
