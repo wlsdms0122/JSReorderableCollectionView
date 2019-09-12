@@ -3,8 +3,9 @@ The collection view which can drag & drop interaction of cell.
 
 ### Snapshot
 <div>
-<img width="300" src="./Snapshot/JSReorderableCollectionView-horizontal.gif" alt="horizontal">
-<img width="300" src="./Snapshot/JSReorderableCollectionView-vertical.gif" alt="vertical">
+  <img width="280" src="./Snapshot/vertical.gif" alt="vertical">
+  <img width="280" src="./Snapshot/horizontal.gif" alt="horizontal">
+  <img width="280" src="./Snapshot/multi_section.gif" alt="multi section">
 </div>
 
 # Requirements
@@ -17,7 +18,7 @@ But it is my build setting. I think it will be fine except specific cases.
 # Installation
 ### CocoaPods
 ```md
-pod 'JSReorderableCollectionView', '~> 1.0.2'
+pod 'JSReorderableCollectionView', '~> 1.0.4'
 ```
 Sorry, `Carthage` is yet.
 
@@ -27,60 +28,79 @@ You have 1 class inherited `UICollectionView` and 1 protocol for `JSReorderableC
 ```swift
 // JSReorderableCollectionView
 open class JSReorderableCollectionView: UICollectionView {
-var isAxisFixedPoint: Bool
-var scrollThreshold: CGFloat
-var scrollInset: UIEdgeInsets
+    var isAxisFixed: Bool
+    var scrollThreshold: CGFloat
+    var scrollInset: UIEdgeInsets
+    var canMoveSection: Bool
 
-public func beginInteractiveWithLocation(_ location: CGPoint)
-public func updateInteractiveWithLocation(_ location: CGPoint)
-public func finishInteractive()
+    public func beginInteractiveWithLocation(_ location: CGPoint)
+    public func updateInteractiveWithLocation(_ location: CGPoint)
+    public func finishInteractive()
 }
 
 // JSReorderableCollectionViewDelegate
 public protocol JSReorderableCollectionViewDelegate: class {
-func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, canMoveItemAt indexPath: IndexPath) -> Bool
-func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willSnapshot cell: UICollectionViewCell, at point: CGPoint) -> UIView
-func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willDisplay snapshot: UIView, source cell: UICollectionViewCell, at point: CGPoint)
+    func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, canMoveItemAt indexPath: IndexPath) -> Bool
+    func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willSnapshot cell: UICollectionViewCell, at point: CGPoint) -> UIView
+    func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willAppear snapshot: UIView, source cell: UICollectionViewCell, at point: CGPoint)
 }
 
 ```
 
 - JSReorderableCollectionView
-- `isAxisFixedPoint` (default `false`)
 
-If this propery ture, select point and snapshot position will fix depend on scroll direction.
+  ### perpertes
+  - **`isAxisFixed` (default `false`)**
 
-ex) Horizontal scroll collection view -> `cell`.`frame`.`center`.`y` = `collectionView`.`center`.`y`
-- `scrollThreshold` (default `40`)
+  If this propery `ture`, select point and snapshot position will fix depend on scroll direction.
 
-Auto scroll area size from both edges depend on scroll direction.
-- `scrollInset` (default `1`)
+  ex) Horizontal scroll collection view -> `cell`.`frame`.`center`.`y` = `collectionView`.`center`.`y`
+    
+  - **`scrollThreshold` (default `40`)**
 
-Drag interaction point can't out of collection view's bounds. `scrollInset` is inset for find `indexPath` of cell on the point.
+  Auto scroll area size from both edges depend on scroll direction.
+    
+  - **`scrollInset` (default `1`)**
 
-If your collection view have `contentInset` not 0, you should set this property for find `indexPath` of cell.
-- `func beginInteractiveWithLocation(_ location: CGPoint)`
+  Drag interaction point can't out of collection view's bounds. `scrollInset` is inset for find `indexPath` of cell on the point.
 
-Start drag interaction. you should pass `CGPoint` of super view of collection view
-- `func updateInteractiveWithLocation(_ location: CGPoint)`
+  If your collection view have `contentInset` not 0, you should set this property for find `indexPath` of cell.
+    
+  - **`canMoveSection` (default `false`)**
+    
+  If this property `true`, collection view item can move to other section.
+    
+  You must implement `func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)` of datasource to update data model first. If not section move isn't working well.
+    
+  ### Method  
+  - **`func beginInteractiveWithLocation(_ location: CGPoint)`**
 
-Update cell position.
-- `func finishInteractive()`
+  Start drag interaction. you should pass `CGPoint` of super view of collection view
+    
+  - **`func updateInteractiveWithLocation(_ location: CGPoint)`**
 
-Finish drag & drop interaction.
+  Update cell position.
+    
+  - **`func finishInteractive()`**
+
+  Finish drag & drop interaction.
+    
 - JSReorderableCollectionViewDelegate
-- `func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, canMoveItemAt indexPath: IndexPath) -> Bool`
+  
+  - **`func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, canMoveItemAt indexPath: IndexPath) -> Bool`**
 
-If your collection view have over two kind of cell type and you won't to move specific cell type, override this method.
-- `func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willSnapshot cell: UICollectionViewCell, at point: CGPoint) -> UIView`
+  If your collection view have over two kind of cell type and you won't to move specific cell type, override this method.
+    
+  - **`func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willSnapshot cell: UICollectionViewCell, at point: CGPoint) -> UIView`**
 
-If you want to customize cell snapshot view, override this method. (default is origin snapshot of the cell)
-- `func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willDisplay snapshot: UIView, source cell: UICollectionViewCell, at point: CGPoint)`
+  If you want to customize cell snapshot view, override this method. (default is origin snapshot of the cell)
+    
+  - **`func reorderableCollectionView(_ collectionView: JSReorderableCollectionView, willDisplay snapshot: UIView, source cell: UICollectionViewCell, at point: CGPoint)`**
 
-If you want to customize cell snapshot display effect or animation, override this method. (default is 1.1x size & 90% alpha)
+  If you want to customize cell snapshot display effect or animation, override this method. (default is 1.1x size & 90% alpha)
 
 ### How to know cell moved
-You can use `func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)` of `UICollectionViewDataSource`.
+You can use **`func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)`** of `UICollectionViewDataSource`.
 
 Send event when `moveItem` called in `func updateInteractiveWithLocation(_ location: CGPoint)`.
 
@@ -94,4 +114,5 @@ Any idea, resolve known issue (plz resolve it T.T), new issue, PR are welcome.
 
 # License
 JSReorderableCollectionView is available under the MIT license.
+
 
