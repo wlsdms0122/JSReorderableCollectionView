@@ -42,11 +42,13 @@ open class JSReorderableCollectionView: UICollectionView {
     // MARK: - properties
     public weak var reorderableDelegate: JSReorderableCollectionViewDelegate?
     
+    private var isReordering: Bool = false
+    
     // Snapshot
     private var snapshot: UIView?
     private var currentPoint: CGPoint?
     
-    public var isAxisFixedPoint: Bool = false // Fix point depended on scroll direction
+    public var isAxisFixed: Bool = false // Fix point depended on scroll direction
     
     // Index path
     private var lastIndexPath: IndexPath?
@@ -58,7 +60,7 @@ open class JSReorderableCollectionView: UICollectionView {
     public var scrollThreshold: CGFloat = 40 // Threshold of auto scrolling (>0, pt)
     public var scrollInset: UIEdgeInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1) // Point boundary inset
     
-    public var canMoveSection: Bool = false
+    public var canMoveSection: Bool = false // Item can move other section
     
     private var scrollDirection: ScrollDirection {
         return (collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection ?? .vertical
@@ -122,10 +124,16 @@ open class JSReorderableCollectionView: UICollectionView {
         return point
     }
     
-    private func convertPoint(_ point: CGPoint) -> CGPoint {
+    /// Convert point to boundary point of frame
+    /// - parameters:
+    ///   - point: Current point
+    ///   - frame: Boundary of view of point
+    ///   - isAxisFixed: Is point convert to fix by scroll axis
+    /// - returns: The converted point
+    private func convertPoint(_ point: CGPoint, frame: CGRect, isAxisFixed: Bool) -> CGPoint {
         // Adjust point by view boundary
         let adjustedPoint = resetPoint(point, frame: frame, inset: scrollInset)
-        return isAxisFixedPoint ? resetPoint(adjustedPoint, axis: scrollDirection, view: self) : adjustedPoint
+        return isAxisFixed ? resetPoint(adjustedPoint, axis: scrollDirection, view: self) : adjustedPoint
     }
     
     /// Get index path in collection view from superview's location
@@ -142,10 +150,6 @@ open class JSReorderableCollectionView: UICollectionView {
     /// - returns: return destination index path. if fail to move cell, return source index path
     private func moveCell(at sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) -> IndexPath {
         guard sourceIndexPath != destinationIndexPath else { return sourceIndexPath }
-        
-        if !canMoveSection && sourceIndexPath.section != destinationIndexPath.section {
-            return sourceIndexPath
-        }
         
         // Datasource have to update before item changed of collection view
         dataSource?.collectionView?(self, moveItemAt: sourceIndexPath, to: destinationIndexPath)
@@ -232,6 +236,10 @@ open class JSReorderableCollectionView: UICollectionView {
         
         if let indexPath = getIndexPathFromPoint(point), let lastIndexPath = lastIndexPath,
             reorderableDelegate?.reorderableCollectionView(self, canMoveItemAt: indexPath) ?? false {
+            if !canMoveSection && indexPath.section != lastIndexPath.section {
+                finishInteractive()
+                return
+            }
             self.lastIndexPath = moveCell(at: lastIndexPath, to: indexPath)
         }
     }
@@ -241,7 +249,7 @@ open class JSReorderableCollectionView: UICollectionView {
         guard let superview = superview else { return }
         
         // Convert point
-        let point = convertPoint(location)
+        let point = convertPoint(location, frame: frame, isAxisFixed: isAxisFixed)
         
         guard let indexPath = getIndexPathFromPoint(point), let cell = cellForItem(at: indexPath),
             reorderableDelegate?.reorderableCollectionView(self, canMoveItemAt: indexPath) ?? false else { return }
@@ -256,20 +264,27 @@ open class JSReorderableCollectionView: UICollectionView {
         
         // Display snapshot
         reorderableDelegate?.reorderableCollectionView(self, willAppear: snapshot!, source: cell, at: point)
+        
+        isReordering = true
     }
     
     public func updateInteractiveWithLocation(_ location: CGPoint) {
-        guard let lastIndexPath = lastIndexPath else { return }
+        guard isReordering else { return }
         
         // Convert point
-        let point = convertPoint(location)
+        let point = convertPoint(location, frame: frame, isAxisFixed: isAxisFixed)
         
         currentPoint = point
         snapshot?.center = point
         
         // Move cell if it is movable
-        if let indexPath = getIndexPathFromPoint(point),
+        if let indexPath = getIndexPathFromPoint(point), let lastIndexPath = lastIndexPath,
             reorderableDelegate?.reorderableCollectionView(self, canMoveItemAt: indexPath) ?? false {
+            if !canMoveSection && indexPath.section != lastIndexPath.section {
+                finishInteractive()
+                return
+            }
+            
             self.lastIndexPath = moveCell(at: lastIndexPath, to: indexPath)
         }
         
@@ -281,9 +296,10 @@ open class JSReorderableCollectionView: UICollectionView {
         guard let superview = superview,
             let lastIndexPath = lastIndexPath,
             let cell = cellForItem(at: lastIndexPath) else { return }
-        
+    
         invalidateScrollDisplayLink()
         
+        // TODO: Change to call delegate method, is available (willDisappear ...)
         UIView.animate(withDuration: 0.2, animations: {
             self.snapshot?.center = self.convert(cell.center, to: superview)
             self.snapshot?.transform = CGAffineTransform.identity
@@ -296,5 +312,7 @@ open class JSReorderableCollectionView: UICollectionView {
             
             self.lastIndexPath = nil
         })
+        
+        isReordering = false
     }
 }
