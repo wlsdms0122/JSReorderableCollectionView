@@ -45,6 +45,7 @@ open class JSReorderableCollectionView: UICollectionView {
     // Snapshot
     private var snapshot: UIView?
     private var currentPoint: CGPoint?
+    
     public var isAxisFixedPoint: Bool = false // Fix point depended on scroll direction
     
     // Index path
@@ -53,8 +54,11 @@ open class JSReorderableCollectionView: UICollectionView {
     // Scroll
     private var displayLink: CADisplayLink?
     private var scrollWeight: CGFloat = 0
+    
     public var scrollThreshold: CGFloat = 40 // Threshold of auto scrolling (>0, pt)
     public var scrollInset: UIEdgeInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1) // Point boundary inset
+    
+    public var canMoveSection: Bool = false
     
     private var scrollDirection: ScrollDirection {
         return (collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection ?? .vertical
@@ -139,6 +143,10 @@ open class JSReorderableCollectionView: UICollectionView {
     private func moveCell(at sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) -> IndexPath {
         guard sourceIndexPath != destinationIndexPath else { return sourceIndexPath }
         
+        if !canMoveSection && sourceIndexPath.section != destinationIndexPath.section {
+            return sourceIndexPath
+        }
+        
         // Datasource have to update before item changed of collection view
         dataSource?.collectionView?(self, moveItemAt: sourceIndexPath, to: destinationIndexPath)
         // Move cell & send message to collectionview delegate
@@ -215,13 +223,13 @@ open class JSReorderableCollectionView: UICollectionView {
                     contentOffset.y = max(contentOffset.y - (10 * scrollWeight), startBound)
                 }
             })
-
+            
             // Invalidate display link if content offset out of bound
             if contentOffset.y <= startBound || contentOffset.y >= endBound {
                 invalidateScrollDisplayLink()
             }
         }
-    
+        
         if let indexPath = getIndexPathFromPoint(point), let lastIndexPath = lastIndexPath,
             reorderableDelegate?.reorderableCollectionView(self, canMoveItemAt: indexPath) ?? false {
             self.lastIndexPath = moveCell(at: lastIndexPath, to: indexPath)
@@ -260,7 +268,8 @@ open class JSReorderableCollectionView: UICollectionView {
         snapshot?.center = point
         
         // Move cell if it is movable
-        if let indexPath = getIndexPathFromPoint(point), reorderableDelegate?.reorderableCollectionView(self, canMoveItemAt: indexPath) ?? false {
+        if let indexPath = getIndexPathFromPoint(point),
+            reorderableDelegate?.reorderableCollectionView(self, canMoveItemAt: indexPath) ?? false {
             self.lastIndexPath = moveCell(at: lastIndexPath, to: indexPath)
         }
         
