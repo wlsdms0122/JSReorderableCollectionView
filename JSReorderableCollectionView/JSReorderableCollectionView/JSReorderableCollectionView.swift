@@ -180,17 +180,7 @@ open class JSReorderableCollectionView: UICollectionView {
         scrollWeight = calcScrollWeightFromPoint(point, axis: scrollDirection, threshold: scrollThreshold)
         if scrollWeight > 0 {
             // Need auto scroll
-            if scrollDirection == .horizontal {
-                if contentOffset.x >= startBound && contentOffset.x <= endBound {
-                    // Check offset bound
-                    addScrollDisplayLink()
-                }
-            } else {
-                if contentOffset.y >= startBound && contentOffset.y <= endBound {
-                    // Check offset bound
-                    addScrollDisplayLink()
-                }
-            }
+            addScrollDisplayLink()
         } else {
             // Invalidate display link if auto scroll not need at point
             invalidateScrollDisplayLink()
