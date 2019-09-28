@@ -18,7 +18,7 @@ But it is my build setting. I think it will be fine except specific cases.
 # Installation
 ### CocoaPods
 ```md
-pod 'JSReorderableCollectionView', '~> 1.0.4'
+pod 'JSReorderableCollectionView', '~> 1.0.5'
 ```
 Sorry, `Carthage` is yet.
 
