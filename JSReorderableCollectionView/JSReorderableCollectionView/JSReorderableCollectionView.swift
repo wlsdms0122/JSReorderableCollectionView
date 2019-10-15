@@ -78,9 +78,9 @@ open class JSReorderableCollectionView: UICollectionView {
     /// End bound of view was calced by threshold
     private var endBound: CGFloat {
         if scrollDirection == .horizontal {
-            return contentSize.width + contentInset.right - bounds.width
+            return max(contentSize.width + contentInset.right - bounds.width, startBound)
         } else {
-            return contentSize.height + contentInset.bottom - bounds.height
+            return max(contentSize.height + contentInset.bottom - bounds.height, startBound)
         }
     }
     
